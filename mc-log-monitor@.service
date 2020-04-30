@@ -1,0 +1,17 @@
+[Unit]
+Description=Minecraft Server log monitor: %i
+Before=minecraft@%i.service
+Requires=minecraft@%i.service
+
+[Service]
+WorkingDirectory=/opt/minecraft
+
+User=minecraft
+Group=minecraft
+
+Restart=always
+
+ExecStart=/opt/minecraft/monitorlog.sh %i
+
+[Install]
+WantedBy=multi-user.target
