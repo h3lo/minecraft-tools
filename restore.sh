@@ -56,7 +56,7 @@ tar -cpzf "${backupPath}/other/${instanceName}-${timestamp}.prerestore.tar.gz" -
 tarexit=$?
 # if tar exits with an error, rm the backup and quit
 if [[ ! ${tarexit} -eq 0 ]]; then
-  rm "${backupPath}/other/${instanceName}-${timestamp}.tar.gz"
+  rm "${backupPath}/other/${instanceName}-${timestamp}.prerestore.tar.gz"
   printf "%s\n" "tar failed to archive the current server."
   exit 3
 fi
