@@ -66,8 +66,14 @@ rm -rf /opt/minecraft/${instanceName}
 # Restore the chosen archive
 tar -xzf "${restorePath}" -C /opt/minecraft
 
+# Get path to the correct server jar
+if [ -f /opt/minecraft/${instanceName}/svr-backup ]; then
+  server_jar_src=$(head -n 1 /opt/minecraft/${instanceName}/svr-backup)
+else
+  server_jar_src=minecraft_server.jar
+fi
 # Hardlink the minecraft_server.jar
-ln /opt/minecraft/minecraft_server.jar /opt/minecraft/${instanceName}/minecraft_server.jar
+ln /opt/minecraft/${server_jar_src} /opt/minecraft/${instanceName}/minecraft_server.jar
 
 # Prompt the user to start the service again
 printf "%s" "Start the service again? [yes] "
